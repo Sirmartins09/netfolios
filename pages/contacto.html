@@ -57,7 +57,7 @@
       <textarea id="mensaje" rows="5" placeholder="Contanos tu idea o necesidad..."></textarea>
     </div>
 
-    <button type="submit">Enviar mensaje</button>
+    <button type="button" onclick="enviarPorWhatsApp()">Enviar mensaje</button>
   </form>
 </section>
 
@@ -72,5 +72,25 @@
             </div>
         </div>
     </footer>
+
+    <script>
+  function enviarPorWhatsApp() {
+    const nombre = document.getElementById('nombre').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const tipo = document.getElementById('tipo').value;
+    const mensaje = document.getElementById('mensaje').value.trim();
+
+    if (!nombre || !email || !tipo) {
+      alert("Por favor, completá todos los campos obligatorios.");
+      return;
+    }
+
+    const numeroWhatsApp = "5492616795504"; // ← Reemplazá por tu número sin espacios
+    const texto = `¡Hola! 👋%0AMi nombre es *${nombre}*. %0AMi correo es: ${email}%0AEstoy interesado/a en un *NetFolio para ${tipo}*.%0AMensaje:%0A${mensaje}`;
+
+    const url = `https://wa.me/${numeroWhatsApp}?text=${texto}`;
+    window.open(url, '_blank');
+  }
+</script>
 </body>
 </html>
